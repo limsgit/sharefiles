@@ -1,0 +1,43 @@
+{
+    "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0c0280aa80009d96/folders",
+    "title": "Folders under folder 0c0280aa80009d96",
+    "author": [
+        {
+            "name": "Open Text Documentum"
+        }
+    ],
+    "updated": "2023-11-03T17:43:43.292+00:00",
+    "page": 1,
+    "items-per-page": 100,
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0c0280aa80009d96/folders"
+        }
+    ],
+    "entries": [
+        {
+            "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0b0280aa8014ae9e",
+            "title": "aliouiam",
+            "author": [
+                {
+                    "name": "AliouiAbdelMouhaymine_FF",
+                    "uri": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/users/AliouiAbdelMouhaymine_FF"
+                }
+            ],
+            "summary": "dm_folder 0b0280aa8014ae9e",
+            "updated": "2023-10-04T11:11:32.000+00:00",
+            "published": "2023-10-04T11:11:32.000+00:00",
+            "links": [
+                {
+                    "rel": "edit",
+                    "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0b0280aa8014ae9e"
+                }
+            ],
+            "content": {
+                "type": "application/vnd.emc.documentum+json",
+                "src": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0b0280aa8014ae9e"
+            }
+        }
+    ]
+}
