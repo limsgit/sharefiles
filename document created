@@ -1,158 +1,178 @@
 {
-    "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0b0280aa8014ae9e/documents",
-    "title": "Documents under folder 0b0280aa8014ae9e",
-    "author": [
-        {
-            "name": "Open Text Documentum"
-        }
+  "name": "document",
+  "type": "dm_document",
+  "definition": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/types/dm_document",
+  "properties": {
+    "object_name": "DummyDocument",
+    "r_object_type": "dm_document",
+    "title": "",
+    "subject": "",
+    "authors": null,
+    "keywords": null,
+    "a_application_type": "",
+    "a_status": "",
+    "r_creation_date": "2023-11-03T17:58:25.000+00:00",
+    "r_modify_date": "2023-11-03T17:58:25.000+00:00",
+    "r_modifier": "AliouiAbdelMouhaymine_FF",
+    "r_access_date": null,
+    "a_is_hidden": false,
+    "i_is_deleted": false,
+    "a_retention_date": null,
+    "a_archive": false,
+    "a_compound_architecture": "",
+    "a_link_resolved": false,
+    "i_reference_cnt": 1,
+    "i_has_folder": true,
+    "i_folder_id": [
+      "0b0280aa8014ae9e"
     ],
-    "updated": "2023-11-03T18:00:39.410+00:00",
-    "page": 1,
-    "items-per-page": 100,
-    "links": [
-        {
-            "rel": "self",
-            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0b0280aa8014ae9e/documents"
-        }
+    "r_composite_id": null,
+    "r_composite_label": null,
+    "r_component_label": null,
+    "r_order_no": null,
+    "r_link_cnt": 0,
+    "r_link_high_cnt": 0,
+    "r_assembled_from_id": "0000000000000000",
+    "r_frzn_assembly_cnt": 0,
+    "r_has_frzn_assembly": false,
+    "resolution_label": "",
+    "r_is_virtual_doc": 0,
+    "i_contents_id": "0000000000000000",
+    "a_content_type": "",
+    "r_page_cnt": 0,
+    "r_content_size": 0,
+    "a_full_text": true,
+    "a_storage_type": "",
+    "i_cabinet_id": "0c0280aa80009d96",
+    "owner_name": "AliouiAbdelMouhaymine_FF",
+    "owner_permit": 7,
+    "group_name": "licensed_users",
+    "group_permit": 1,
+    "world_permit": 1,
+    "i_antecedent_id": "0000000000000000",
+    "i_chronicle_id": "090280aa80152a30",
+    "i_latest_flag": true,
+    "r_lock_owner": "",
+    "r_lock_date": null,
+    "r_lock_machine": "",
+    "log_entry": "",
+    "r_version_label": [
+      "1.0",
+      "CURRENT"
     ],
-    "entries": [
-        {
-            "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a30",
-            "title": "DummyDocument",
-            "author": [
-                {
-                    "name": "AliouiAbdelMouhaymine_FF",
-                    "uri": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/users/AliouiAbdelMouhaymine_FF"
-                }
-            ],
-            "summary": "dm_document 090280aa80152a30",
-            "updated": "2023-11-03T17:58:25.000+00:00",
-            "published": "2023-11-03T17:58:25.000+00:00",
-            "links": [
-                {
-                    "rel": "edit",
-                    "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a30"
-                }
-            ],
-            "content": {
-                "type": "application/vnd.emc.documentum+json",
-                "src": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a30"
-            }
-        },
-        {
-            "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a2f",
-            "title": "DummyDocument",
-            "author": [
-                {
-                    "name": "AliouiAbdelMouhaymine_FF",
-                    "uri": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/users/AliouiAbdelMouhaymine_FF"
-                }
-            ],
-            "summary": "dm_document 090280aa80152a2f",
-            "updated": "2023-11-03T17:57:22.000+00:00",
-            "published": "2023-11-03T17:57:22.000+00:00",
-            "links": [
-                {
-                    "rel": "edit",
-                    "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a2f"
-                }
-            ],
-            "content": {
-                "type": "application/vnd.emc.documentum+json",
-                "src": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a2f"
-            }
-        },
-        {
-            "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a2e",
-            "title": "DummyDocument",
-            "author": [
-                {
-                    "name": "AliouiAbdelMouhaymine_FF",
-                    "uri": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/users/AliouiAbdelMouhaymine_FF"
-                }
-            ],
-            "summary": "dm_document 090280aa80152a2e",
-            "updated": "2023-11-03T17:56:03.000+00:00",
-            "published": "2023-11-03T17:56:03.000+00:00",
-            "links": [
-                {
-                    "rel": "edit",
-                    "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a2e"
-                }
-            ],
-            "content": {
-                "type": "application/vnd.emc.documentum+json",
-                "src": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a2e"
-            }
-        },
-        {
-            "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f47b",
-            "title": "DummyDocument1",
-            "author": [
-                {
-                    "name": "AliouiAbdelMouhaymine_FF",
-                    "uri": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/users/AliouiAbdelMouhaymine_FF"
-                }
-            ],
-            "summary": "dm_document 090280aa8014f47b",
-            "updated": "2023-11-03T16:56:59.000+00:00",
-            "published": "2023-11-03T16:56:59.000+00:00",
-            "links": [
-                {
-                    "rel": "edit",
-                    "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f47b"
-                }
-            ],
-            "content": {
-                "type": "application/vnd.emc.documentum+json",
-                "src": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f47b"
-            }
-        },
-        {
-            "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f476",
-            "title": "DummyDocument1",
-            "author": [
-                {
-                    "name": "AliouiAbdelMouhaymine_FF",
-                    "uri": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/users/AliouiAbdelMouhaymine_FF"
-                }
-            ],
-            "summary": "dm_document 090280aa8014f476",
-            "updated": "2023-10-20T09:50:19.000+00:00",
-            "published": "2023-10-20T09:49:19.000+00:00",
-            "links": [
-                {
-                    "rel": "edit",
-                    "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f476"
-                }
-            ],
-            "content": {
-                "type": "application/vnd.emc.documentum+json",
-                "src": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f476"
-            }
-        },
-        {
-            "id": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f474",
-            "title": "DummyDocument",
-            "author": [
-                {
-                    "name": "AliouiAbdelMouhaymine_FF",
-                    "uri": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/users/AliouiAbdelMouhaymine_FF"
-                }
-            ],
-            "summary": "dm_document 090280aa8014f474",
-            "updated": "2023-10-19T17:11:49.000+00:00",
-            "published": "2023-10-19T17:11:49.000+00:00",
-            "links": [
-                {
-                    "rel": "edit",
-                    "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f474"
-                }
-            ],
-            "content": {
-                "type": "application/vnd.emc.documentum+json",
-                "src": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa8014f474"
-            }
-        }
-    ]
+    "i_branch_cnt": 0,
+    "i_direct_dsc": false,
+    "r_immutable_flag": false,
+    "r_frozen_flag": false,
+    "r_has_events": false,
+    "acl_domain": "dbod2sandbox",
+    "acl_name": "private",
+    "a_special_app": "",
+    "i_is_reference": false,
+    "r_creator_name": "AliouiAbdelMouhaymine_FF",
+    "r_is_public": false,
+    "r_policy_id": "0000000000000000",
+    "r_resume_state": 0,
+    "r_current_state": 0,
+    "r_alias_set_id": "0000000000000000",
+    "a_effective_date": null,
+    "a_expiration_date": null,
+    "a_publish_formats": null,
+    "a_effective_label": null,
+    "a_effective_flag": null,
+    "a_category": "",
+    "language_code": "",
+    "a_is_template": false,
+    "a_controlling_app": "",
+    "r_full_content_size": 0,
+    "a_extended_properties": null,
+    "a_is_signed": false,
+    "a_last_review_date": null,
+    "i_retain_until": null,
+    "r_aspect_name": null,
+    "i_retainer_id": null,
+    "i_partition": 0,
+    "i_is_replica": false,
+    "i_vstamp": 0,
+    "r_object_id": "090280aa80152a30"
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a30"
+    },
+    {
+      "rel": "edit",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a30"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/delete",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/documents/090280aa80152a30"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/parent-links",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/parent-links"
+    },
+    {
+      "rel": "parent",
+      "title": "0b0280aa8014ae9e",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0b0280aa8014ae9e"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/cabinet",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/cabinets/0c0280aa80009d96"
+    },
+    {
+      "rel": "contents",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/contents"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/primary-content",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/contents/content"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/checkout",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/lock"
+    },
+    {
+      "rel": "version-history",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/versions"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/current-version",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/versions/current"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/relations",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/relations?related-object-id=090280aa80152a30&related-object-role=any"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/object-aspects",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/aspects"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/permission-set",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/permission-set"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/permissions",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/permissions"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/virtual-document-conversion",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/vd-nodes"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/comments",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/comments"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/attachable-lifecycles",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/lifecycles?object-id=090280aa80152a30"
+    },
+    {
+      "rel": "http://identifiers.emc.com/linkrel/object-lifecycle",
+      "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/090280aa80152a30/lifecycle"
+    }
+  ]
 }
