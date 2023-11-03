@@ -1,0 +1,116 @@
+{
+    "name": "cabinet",
+    "type": "dm_cabinet",
+    "definition": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/types/dm_cabinet",
+    "properties": {
+        "object_name": "Users",
+        "r_object_type": "dm_cabinet",
+        "title": "Cabinet for all users home",
+        "r_creation_date": "2020-02-24T08:30:38.000+00:00",
+        "r_modify_date": "2020-02-24T08:31:35.000+00:00",
+        "r_modifier": "SchnellRobert_FF",
+        "a_is_hidden": false,
+        "i_is_deleted": false,
+        "a_archive": false,
+        "a_link_resolved": false,
+        "i_reference_cnt": 1,
+        "i_has_folder": true,
+        "r_link_cnt": 51,
+        "r_link_high_cnt": 0,
+        "r_assembled_from_id": "0000000000000000",
+        "r_frzn_assembly_cnt": 0,
+        "r_has_frzn_assembly": false,
+        "r_is_virtual_doc": 0,
+        "i_contents_id": "0000000000000000",
+        "r_page_cnt": 0,
+        "r_content_size": 0,
+        "a_full_text": true,
+        "i_cabinet_id": "0c0280aa80009d96",
+        "owner_name": "SchnellRobert_FF",
+        "owner_permit": 7,
+        "group_name": "licensed_users",
+        "group_permit": 1,
+        "world_permit": 2,
+        "i_antecedent_id": "0000000000000000",
+        "i_chronicle_id": "0c0280aa80009d96",
+        "i_latest_flag": true,
+        "r_version_label": [
+            "1.0",
+            "CURRENT"
+        ],
+        "i_branch_cnt": 0,
+        "i_direct_dsc": false,
+        "r_immutable_flag": false,
+        "r_frozen_flag": false,
+        "r_has_events": false,
+        "acl_domain": "dbod2sandbox",
+        "acl_name": "users_root",
+        "i_is_reference": false,
+        "r_creator_name": "SchnellRobert_FF",
+        "r_is_public": false,
+        "r_policy_id": "0000000000000000",
+        "r_resume_state": 0,
+        "r_current_state": 0,
+        "r_alias_set_id": "0000000000000000",
+        "a_is_template": false,
+        "r_full_content_size": 0.0,
+        "a_is_signed": false,
+        "i_partition": 0,
+        "i_is_replica": false,
+        "i_vstamp": 4,
+        "r_folder_path": [
+            "/Users"
+        ],
+        "i_ancestor_id": [
+            "0c0280aa80009d96"
+        ],
+        "is_private": false,
+        "r_object_id": "0c0280aa80009d96"
+    },
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/cabinets/0c0280aa80009d96"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/folders",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0c0280aa80009d96/folders"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/documents",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0c0280aa80009d96/documents"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/objects",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0c0280aa80009d96/objects"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/child-links",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/folders/0c0280aa80009d96/child-links"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/relations",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/relations?related-object-id=0c0280aa80009d96&related-object-role=any"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/object-aspects",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/0c0280aa80009d96/aspects"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/permission-set",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/0c0280aa80009d96/permission-set"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/permissions",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/0c0280aa80009d96/permissions"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/attachable-lifecycles",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/lifecycles?object-id=0c0280aa80009d96"
+        },
+        {
+            "rel": "http://identifiers.emc.com/linkrel/object-lifecycle",
+            "href": "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/d2_sandbox/objects/0c0280aa80009d96/lifecycle"
+        }
+    ]
+}
