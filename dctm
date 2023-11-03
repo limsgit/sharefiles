@@ -1,0 +1,121 @@
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.X509TrustManager;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
+import java.util.Base64;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+class HelloWorld {
+    public static void main(String[] args) throws NoSuchAlgorithmException, KeyManagementException {
+
+        X509TrustManager customTrustManager = new X509TrustManager() {
+            public X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
+
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+            }
+
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+            }
+        };
+
+        // Install the custom TrustManager
+        SSLContext sc = SSLContext.getInstance("TLS");
+        sc.init(null, new X509TrustManager[] { customTrustManager }, null);
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+        String repositoryID = "d2_sandbox";
+        String apiUrl = "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/"+repositoryID+"/cabinets/";
+        String username = "aliouiam";
+        String password = "ehScWQ.9$2!9";
+
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            // Set up basic authentication
+            String authString = username + ":" + password;
+
+            String authHeader = "Basic " + Base64.getEncoder().encodeToString(authString.getBytes());
+
+            conn.setRequestProperty("Authorization", authHeader);
+            conn.setRequestProperty("Accept", "application/vnd.emc.documentum+json");
+
+            // Get the response
+            int responseCode = conn.getResponseCode();
+            System.out.print("responseCode : "+responseCode);
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+
+                String targetCabinetTitle = "Users";
+
+                reader.close();
+                JSONObject responseJson = new JSONObject(response.toString());
+                JSONArray entries = responseJson.getJSONArray("entries");
+                String id = "";
+                for (int i = 0; i < entries.length(); i++) {
+                    JSONObject entry = entries.getJSONObject(i);
+                    String title = entry.getString("title");
+
+                    // Check if the current entry has the target title
+                    if (title.equals(targetCabinetTitle)) {
+                        id = entry.getString("id");
+                        System.out.println("ID for Cabinet with title '" + targetCabinetTitle + "': " + id);
+                        // You can break the loop if you've found the entry
+                        break;
+                    }
+                }
+
+                if(!id.isEmpty()){
+                    try {
+                        URL parsedUrl = new URL(id);
+                        String path = parsedUrl.getPath();
+
+                        // Split the path by '/'
+                        String[] pathParts = path.split("/");
+
+                        // The last part of the path is the ID
+                        String finalId = pathParts[pathParts.length - 1];
+
+                        System.out.println("finalId: " + finalId);
+                        
+
+                    } catch (MalformedURLException e) {
+                        System.out.println("Invalid URL: " + e.getMessage());
+                    }
+                }
+
+
+            } else {
+                System.out.println("Request failed with response code: " + responseCode);
+            }
+
+            conn.disconnect();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
