@@ -1,0 +1,374 @@
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.X509TrustManager;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
+import java.util.Base64;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        String repositoryID = "d2_sandbox";
+        String apiUrl = "https://dfs-dev-new.documentum.basf.net/dctm-rest/repositories/" + repositoryID + "/cabinets";
+        String username = "aliouiam";
+        String password = "ehScWQ.9$2!9";
+
+        try {
+            StringBuilder response = authenticateAndSendRequest(apiUrl, username, password, "GET");
+
+            if (response != null) {
+                String cabinetID = processCabinetResponse(response);
+                if(!cabinetID.isEmpty()){
+                    StringBuilder response2 = authenticateAndSendRequest(cabinetID, username, password, "GET");
+                    if (response2 != null) {
+                        CabinetInfo cabinetInfo = processDocumentResponse(response2.toString());
+                        if(cabinetInfo.hasFolder){
+                            String response3 = authenticateAndSendRequest(cabinetInfo.documentsHref, username, password, "GET").toString();
+                            System.out.println("response3: " + response3);
+                            String targetTitle = username;
+                            String folderID = findIdByTitle(response3.toString(), targetTitle);
+                            if(!folderID.isEmpty()){
+                                String messageBody = "{\"properties\": {\"object_name\":\"DummyDocument\",\"r_object_type\":\"dm_document\"}}";
+                                System.out.println("folderID: " + folderID);
+                                String response4 = sendPostRequest(folderID+"/documents", messageBody, username, password);
+                                if(!response4.isEmpty()){
+                                    System.out.println("response4: " + response4);
+                                    String rObjectID = getRObjID(response4);
+                                    String rLink = getHrefForRel(response4, "contents");
+                                    if(!rObjectID.isEmpty()){
+                                        System.out.println("rObjectID: " + rObjectID);
+                                        System.out.println("rLink: " + rLink);
+                                        sendPostRequestWithFile(rLink+"?format=png","iVBORw0KGgoAAAANSUhEUgAAAH4AAAB+CAMAAADV/VW6AAABgFBMVEUAAAD////w8PCoqKjExMTh4eHHx8eXl5cAV" +
+                                                "Yy/v7+gJoz88fcAXZkAYqHX19dhYWHy9/vcAHQAYrTtkrgAa7gAb7UAZqkANVYAVpfyF3mQkJD29vZHR0ftHnl2Dz3OIYEAdsCBgYFVVVUwMDAAEh3w2+rmyNzaqsvUnMPI" +
+                                                "f7K+X6SzRpqtOJSvXKa7gLXUrc" +
+                                                "/pvtbUjLqxLIytFIaXJY+MHo2JLZKXXai2jMDSwdro4O3CT5i6Ioe1AH93G2SCIHh4IJCulMPSeqzHQ5OfIHpqKZSBVaeYgrre1OjfmsDAAHmcHW1zO51fO" +
+                                                "ptLKJdmVaiup87UZqNMNpyBgL1EM3hSS6Y1QqM4TaeTmMnvrsqwvt3aSpIqW7BYdbrnfK12nc06CifE1+oLRHmOsNewGWMWBA3pRoxAgrxHCSTvap5Vh7U" +
+                                                "ARG80bqYfHx8AIDOVFFFcEkUiBx1IFUg/IlpZJGpZN4giFDOGF1lEQ5AXKU8rOnQTHTjJG20sBRYVDB9wE0nK+9MGAAAGrUlEQVRogc2b+WPaNhTHbRwwKY" +
+                                                "c5AgGMRwjHurbb0nSlW5ce67G1JGzrkWbJWCBHky2ULEdz9Fj3r0+HDT5kxwbb2veXBGP00ZPek2RLj2FHUK3++eUvrly9dgnr6pdfXf66XhulJMbZ7WJt7v" +
+                                                "qV+RtIlxR9A3XzZuPWt9/dFr3DR+rXv1+4c2cBaP4R0F2se0AI37h/f+nWD0+c1MA+vv7gIUY/untw0D1kNDrsHh3dazQaS0uPH//40xO38ZGnD5tNgF486z" +
+                                                "Lm+nT8dmlpqdX6+ZdfIy7ia8+azWZpYfHAAj1oh+OTVqv1/PkLW01gA19/ViqVmosHhxezsU5fniwD2anAhfgaglu2OUHH58vLr169uD0mPvIAwEtn/ziDoyY4" +
+                                                "X15ZWfktMQ5+FcFfO4dDvTsH/PbayPjI72PAUQUAfuUPqwawwEPTt/8cHQ5Ufd9ut1MWDWCKj6wnk6W/x4JDfciBCnRMG8AMX9tJJj92x6YDbQK+aQeY4OeSyeS" +
+                                                "iG3Cg/XYq1d5wgn8KGv4zl+jAA3KpVGrLPj4N6OP5nE6bUyZ8Eh7SbY+w9tSbmiLyCXjg8ttjBDtZ04DfsYNPe0HHfKP9BrxHdMifmTLw9XhA/+gJHfBnjHwdHsT" +
+                                                "7R2/gQD3A37DC1yTPbFf4CXN8BIy0rsa7XuGZzG7CFA9Czr2xjqjYzFTHDL8qSeNPcdbaz2Sm1sj4iCR553aKpmcymQQRvyMlR1jTOVU4k90l4X1oeqRsJrtmxPvS9" +
+                                                "FDTmWw2YcCvS97G3FCg+bf0+JpPTQ9UzWZSCR3+LynpEx01f0eLr/tnPFAsm9vQ4P00Hpm/p8b7azw0P7uhwvtrPDA/m9sb4iN5f41nqqD3EwN8Wkp2fcUzvWxua4C" +
+                                                "XpG1/6cx+LPZGwdfzkk8D3lBhHHsQv573coVFFnC+DsZHdvL+Oh5UFbR+AuHr+bzvbQ9aPwZbH+DTeX+DHmsa+T7Dijt5v/0eKRvdg/ialPd4eUtWOBYLAvxqXvJhiWd" +
+                                                "UD3Y+A8OOBp2ZjoHOZ1inXS+UC+Vyn3i16KScaiy3C/Ckro8HDBLQF+W4vEwJcKoaVCaVtdsEvq0SNBZgqFs4GmUZsMgzRn2QNQiWK6ivi5xyd1m9fxGfhfiA4feiEQ8" +
+                                                "6n5nLS12beE53KV5BN89qd0+gmbbw0PeY1XzSOOAT8Xo6IFWGN8c5LoSgsFEqxv0cIx743hqTJjl+mYcqwI4OFND/fKWAiwnyQnG2EJI/QONRRWbR7woiy8O/ffyjAqxZ" +
+                                                "UP6/QsBvMVZxx8kEqCK2QZA/9rEPTspdopRdKWgKmABfTZiVvh/NdRir6U6NR7igyt0n1X1iUgDEhyzwe3bxwrCvFYWw+SPjq+HoG8ZqxFfhka1lzbfIv0SGZ80ZlnjGAT" +
+                                                "6g6gf112wZO0XA6Fo28FGb+KIohxSUMDGJFMdxpgRkkJ/1Ci9gN8Mqq+N5UnFCFPza7nHPeo7jJpWBQ4/H3S9XQNMHbuE1MuCZYmjweTAyuInvF4EUw8ricB4TeXytwitz" +
+                                                "Iaviu4VHQWZeEL6ngGugaq+LA8/msINKNni2XoKoHR4uHnasFjsqPOrv+EV4HCG8PTwadG1OOf3AwM8s5QzfIU+4Rjy2SxdXivoDb6vAm4azniUeTbjE5QYBL" +
+                                                "w8uIicU9VUAky+Pp8J+SOsiF+HXyIstEp5RIkvUdQGa+gNceVbgg048Hy22wFLTNPK0+L7C1xU4HHOdxT1aahIX2kQ8WEsR8bpFoHq9Y42HC22rxwzjoMsFiQVyg" +
+                                                "5VtUD3mohWJGV5+zLCIvKIgCLqhpl8s8wXjnX2BD8XjcU7QXoYFmD36yA9ZlB8xKT9gU369QPnlCqVXSz3l1RLlF2uUXyvSeakaG7xUpfxKmU2T3nB4Ks0LdcrbC" +
+                                                "XAzxVfn62k2U2hvJfm8l9TTbaTR3kb01fyeYROV9hYy5Q102scHKB+eoH10hPbBGdj8Xs98FseGfDg0VbU6NEX7yBg8MOel+4WtD8zRPi5I+7Ak7aOitA/KovBzv/" +
+                                                "97do8Je3JIetP+IWkvjoibHVH/Px6Qdzc94J3j9AA3kyPep5wnRyipIWNH4If2SKkhLE6MadrJAjPX6IkxrJwWtEgrLYilnBTFDlLCuqPAx08JY+WEuNKis1Hok" +
+                                                "0sJcVByOuC/dsfh16cvT1pupQPiFrCfDHnqdjIk1DAV9MDCEU+9SQVFGibCnsFEWE0tDg+7R29hImzDm0RYJHUa8PwgDRhnAavSgG0a7hjPapOgb/icBD2QNgX82" +
+                                                "hgp4P8Bj9NLLMwHBkoAAAAASUVORK5CYII=", username, password);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        } catch (IOException | JSONException | NoSuchAlgorithmException | KeyManagementException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String getRObjID(String json) throws JSONException {
+        JSONObject responseJson = new JSONObject(json);
+        String rObjectId = responseJson.getJSONObject("properties").getString("r_object_id");
+        System.out.println("r_object_id: " + rObjectId);
+        return  rObjectId != null ? rObjectId : "";
+    }
+
+    private static String getHrefForRel(String json, String rel) throws JSONException {
+        JSONObject responseJson = new JSONObject(json);
+        JSONArray links = responseJson.getJSONArray("links");
+
+        for (int i = 0; i < links.length(); i++) {
+            JSONObject link = links.getJSONObject(i);
+            if (link.getString("rel").equals(rel)) {
+                return link.getString("href");
+            }
+        }
+
+        return "";
+    }
+
+    private static void sendPostRequestWithFile(String apiUrl, String base64FileContent, String username, String password) {
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/vnd.emc.documentum+json");
+            conn.setDoOutput(true);
+
+            // Set up basic authentication
+            String authString = username + ":" + password;
+            String authHeader = "Basic " + Base64.getEncoder().encodeToString(authString.getBytes());
+            conn.setRequestProperty("Authorization", authHeader);
+
+            // Write the base64-encoded file content to the request
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = Base64.getDecoder().decode(base64FileContent);
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+                System.out.println("Success: " + response.toString());
+            } else {
+                BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                StringBuilder errorResponse = new StringBuilder();
+                String line;
+                while ((line = errorReader.readLine()) != null) {
+                    errorResponse.append(line);
+                }
+                errorReader.close();
+
+                // Parse the error response JSON
+                JSONObject errorJson = new JSONObject(errorResponse.toString());
+                String errorMessage = errorJson.optString("message");
+                String errorDetails = errorJson.optString("details");
+
+                System.out.println("Error Response: " + errorResponse.toString());
+                System.out.println("Error Message: " + errorMessage);
+                System.out.println("Error Details: " + errorDetails);
+            }
+
+            conn.disconnect();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private static StringBuilder authenticateAndSendRequest(String apiUrl, String username, String password, String requestMethod)
+            throws IOException, NoSuchAlgorithmException, KeyManagementException {
+        X509TrustManager customTrustManager = new X509TrustManager() {
+            public X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
+
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+            }
+
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+            }
+        };
+
+        // Install the custom TrustManager
+        SSLContext sc = SSLContext.getInstance("TLS");
+        sc.init(null, new X509TrustManager[]{customTrustManager}, null);
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+        URL url = new URL(apiUrl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod(requestMethod);
+
+        // Set up basic authentication
+        String authString = username + ":" + password;
+        String authHeader = "Basic " + Base64.getEncoder().encodeToString(authString.getBytes());
+        conn.setRequestProperty("Authorization", authHeader);
+        conn.setRequestProperty("Accept", "application/vnd.emc.documentum+json");
+
+        int responseCode = conn.getResponseCode();
+        System.out.print("responseCode: " + responseCode);
+
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+
+            reader.close();
+            conn.disconnect(); // Close the connection
+
+            return response;
+        } else {
+            System.out.println("Request failed with response code: " + responseCode);
+        }
+
+        return null;
+    }
+
+    private static String processCabinetResponse(StringBuilder response) throws JSONException {
+        String cabinetID = "";
+        String targetCabinetTitle = "Users";
+        JSONObject responseJson = new JSONObject(response.toString());
+        JSONArray entries = responseJson.getJSONArray("entries");
+        String id = "";
+        for (int i = 0; i < entries.length(); i++) {
+            JSONObject entry = entries.getJSONObject(i);
+            String title = entry.getString("title");
+
+            // Check if the current entry has the target title
+            if (title.equals(targetCabinetTitle)) {
+                id = entry.getString("id");
+                System.out.println("ID for Cabinet with title '" + targetCabinetTitle + "': " + id);
+                // You can break the loop if you've found the entry
+                break;
+            }
+        }
+
+        if (!id.isEmpty()) {
+            cabinetID = id;
+        }
+        return  cabinetID;
+    }
+    private static class CabinetInfo {
+        boolean hasFolder;
+        String documentsHref;
+    }
+
+    private static CabinetInfo processDocumentResponse(String jsonResponse) {
+        CabinetInfo cabinetInfo = new CabinetInfo();
+
+        try {
+            JSONObject responseJson = new JSONObject(jsonResponse);
+            JSONObject properties = responseJson.getJSONObject("properties");
+
+            // Check if i_has_folder is true
+            cabinetInfo.hasFolder = properties.getBoolean("i_has_folder");
+
+            if (cabinetInfo.hasFolder) {
+                JSONArray links = responseJson.getJSONArray("links");
+                cabinetInfo.documentsHref = findDocumentsHref(links);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return cabinetInfo;
+    }
+
+    private static String findDocumentsHref(JSONArray links) throws JSONException {
+        for (int i = 0; i < links.length(); i++) {
+            JSONObject link = links.getJSONObject(i);
+            String rel = link.getString("rel");
+            if ("http://identifiers.emc.com/linkrel/folders".equals(rel)) {
+                return link.getString("href");
+            }
+        }
+        return null;
+    }
+
+    private static String sendPostRequest(String apiUrl, String messageBody, String username, String password) throws NoSuchAlgorithmException, KeyManagementException {
+        StringBuilder response = new StringBuilder();
+
+        X509TrustManager customTrustManager = new X509TrustManager() {
+            public X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
+
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+            }
+
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+            }
+        };
+
+        // Install the custom TrustManager
+        SSLContext sc = SSLContext.getInstance("TLS");
+        sc.init(null, new X509TrustManager[]{customTrustManager}, null);
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Accept", "*/*");
+            conn.setRequestProperty("Content-Type", "application/vnd.emc.documentum+json");
+            conn.setDoOutput(true);
+
+            // Set up basic authentication
+            String authString = username + ":" + password;
+            String authHeader = "Basic " + Base64.getEncoder().encodeToString(authString.getBytes());
+            conn.setRequestProperty("Authorization", authHeader);
+
+            // Write the message body to the request
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = messageBody.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = conn.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+            } else {
+                BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                StringBuilder errorResponse = new StringBuilder();
+                String line;
+                while ((line = errorReader.readLine()) != null) {
+                    errorResponse.append(line);
+                }
+                errorReader.close();
+
+                // Parse the error response JSON
+                JSONObject errorJson = new JSONObject(errorResponse.toString());
+                String errorMessage = errorJson.optString("message");
+                String errorDetails = errorJson.optString("details");
+
+                System.out.println("Error Response: " + errorResponse.toString());
+                System.out.println("Error Message: " + errorMessage);
+                System.out.println("Error Details: " + errorDetails);
+            }
+
+            conn.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return response.toString();
+    }
+
+    private static String findIdByTitle(String json, String targetTitle) throws JSONException {
+        String res = "";
+        JSONObject responseJson = new JSONObject(json);
+        JSONArray entries = responseJson.getJSONArray("entries");
+
+        for (int i = 0; i < entries.length(); i++) {
+            JSONObject entry = entries.getJSONObject(i);
+            String title = entry.getString("title");
+
+            if (title.equals(targetTitle)) {
+                String id = entry.getString("id");
+                res = id;
+                System.out.println("ID for Cabinet with title '" + targetTitle + "': " + id);
+                break;
+            }
+        }
+        return  res;
+    }
+}
